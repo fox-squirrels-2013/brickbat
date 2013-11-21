@@ -20,7 +20,7 @@ end
 group :test, :development do
 	gem 'rspec-rails'
 end
-
+gem 'omniauth-twitter'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -36,4 +36,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
