@@ -1,25 +1,35 @@
-<div class="container">
-  <header>
-    <h1>Brickbat</h1>
-    <nav>
-    </nav>
-  </header>
+<div id='show_post'>
+  <h1><%= @post.title %></h1>
+  <hr>
+  <p id="show_post_body"><%= @post.body %> <span id="poster">@postdude</span></p>
+  <hr>
 
-  <h3><%= @post.title %></h3>
-  <p><%= @post.body %></p>
 
+  <% if session[:user_id] %>
   <%= form_for @response, url: responses_path do |f| %>
-    <%= f.text_area :body %>
-    <%= hidden_field_tag :post_id, "#{@post.id}" %>
+  <p>Submit a new response</p>
 
-    <%= f.submit "Submit" %>
+  <div><%= f.text_field :body %></div>
+  <%= hidden_field_tag :post_id, "#{@post.id}" %>
+  <div><%= f.submit "Submit new Response" %></div>
   <% end %>
-
-  <% if @post %>
-    <% @post.responses.each do |response| %>
-      <p><span class="response_votes"><%= response.votes %></span> <span class="response_body"><%= response.body %></span></p>
-    <% end %>
   <% else %>
+  <div id="nonuser">
+    Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
+  </div><% end %>
+
+  <div id="all_responses">
+    <% if @post %>
+    <% @post.responses.each do |response| %>
+    <div class="post_responses">
+      <span class="response_votes"><%= response.votes %></span> 
+      <span class="response_body"><%= response.body %></span>
+      <span class="response_author">@duder</span>
+    </div>
+    <% end %>
+    <% else %>
     <p>There are no responses yet.</p>
-  <% end %>
+    <% end %>
+  </div>
+
 </div>

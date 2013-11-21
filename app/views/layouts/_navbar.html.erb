@@ -1,0 +1,18 @@
+<div id="navbar">
+	<ul>
+		<li><%= link_to 'Home', :root %></li>
+		<li><%= link_to 'Top Rated', :root %></li>
+		<li><%= link_to 'Create Post', :new_post %></li>
+
+		<li id="login">
+
+			<% unless session[:user_id]%>
+				<%=link_to "Login with Twitter", "/auth/twitter" %>
+			<% else %>
+				<%='@' + User.find_by_id(session[:user_id]).username %>
+				<%=link_to "Log out", "/logout" %>
+			<% end %>
+		</li>
+
+	</ul>
+</div>
