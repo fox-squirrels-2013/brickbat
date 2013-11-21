@@ -4,8 +4,9 @@ Brickbat::Application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 
-  resources :posts, except: [:edit, :update, :destroy]
-  resources :responses, only: [:new, :create]
+  resources :posts, except: [:edit, :update, :destroy] do
+  	resources :responses, only: [:new, :create]
+  end
   post '/posts/vote', to: "posts#vote"
 
 end
