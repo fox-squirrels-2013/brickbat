@@ -11,7 +11,8 @@ describe PostsController do
 
   it '#new' do
     get :new
-    expect(assigns(:post)).to be_an_instance_of Post
+    # expect(assigns(:post)).to be_an_instance_of Post
+    expect(post_obj).to be_an_instance_of Post
   end
 
   context '#create' do
