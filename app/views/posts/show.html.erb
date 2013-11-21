@@ -1,44 +1,50 @@
 <div id='show_post'>
   <h1><%= @post.title %></h1>
   <hr>
-  <p id="show_post_body"><%= @post.body %> <span id="poster">@postdude</span></p>
+  <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
   <hr>
 
 
   <% if session[:user_id] %>
-  <%= form_for @response, url: post_responses_path(@post.id) do |f| %>
-  <p>Submit a new response</p>
+    <%= form_for @response, url: post_responses_path(@post.id) do |f| %>
+      <p>Submit a new response</p>
 
-  <div><%= f.text_field :body %></div>
-  <%= hidden_field_tag :post_id, "#{@post.id}" %>
-  <div><%= f.submit "Submit new Response" %></div>
-  <% end %>
+      <div><%= f.text_field :body %></div>
+      <%= hidden_field_tag :post_id, "#{@post.id}" %>
+      <div><%= f.submit "Submit new Response" %></div>
+    <% end %>
   <% else %>
-  <div id="nonuser">
-    Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
-  </div><% end %>
+    <div id="nonuser">
+      Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
+    </div>
+  <% end %>
 
 
   <% if @post %>
   <!-- sorting algorithm for responses to a post -->
-    <% @post.responses.each do |response| %>
-      <p> 
-        <%= form_for response, url: posts_vote_path, method: :post do |f| %>
-          <%= hidden_field_tag :response_id, "#{response.id}" %>
-          <%= f.submit "Up" %>
+    <% @sorted_responses.each do |response| %>
+      
+        <%v = Vote.where(user_id: session[:user_id], response_id: response.id).first %>
+        <% if ((v && v.vote == "Down") && v.vote != "Up") || (Vote.where(user_id: session[:user_id], response_id: response.id, vote: "Down").empty? && v == nil) %>
+          <%= form_for response, url: posts_vote_path, method: :post do |f| %>
+            <%= hidden_field_tag :response_id, "#{response.id}" %>
+            <%= f.submit "Up" %>
+          <% end %>
         <% end %>
-
-        <%= form_for response, url: posts_vote_path, method: :post do |f| %>
-          <%= hidden_field_tag :response_id, "#{response.id}" %>
-          <%= f.submit "Down" %>
+        
+        <% if ((v && v.vote == "Up") && v.vote != "Down") || (Vote.where(user_id: session[:user_id], response_id: response.id, vote: "Up").empty? && v == nil) %>
+          <%= form_for response, url: posts_vote_path, method: :post do |f| %>
+            <%= hidden_field_tag :response_id, "#{response.id}" %>
+            <%= f.submit "Down" %>
+          <% end %>
         <% end %> 
 
         <div class="post_responses">
-          <span class="response_votes"><%= response.votes %></span> 
+          <span class="response_votes"><%= response.votes_count %></span> 
           <span class="response_body"><%= response.body %></span>
-          <span class="response_author">@duder</span>
+          <span class="response_author">@<%= response.user.username %></span>
         </div>
-      </p>
+      
 
     <% end %>
 
