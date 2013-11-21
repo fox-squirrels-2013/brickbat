@@ -1,1 +1,25 @@
-show.html.erb
+<div class="container">
+  <header>
+    <h1>Brickbat</h1>
+    <nav>
+    </nav>
+  </header>
+
+  <h3><%= @post.title %></h3>
+  <p><%= @post.body %></p>
+
+  <%= form_for :responses, url: responses_path do |f| %>
+    <%= f.text_area :body %>
+    <%= hidden_field_tag :post_id, "#{@post.id}" %>
+
+    <%= f.submit "Submit" %>
+  <% end %>
+
+  <% if @post %>
+    <% @post.responses.each do |response| %>
+      <span class="response_votes"><%= response.votes %></span> <span class="response_body"><%= response.body %></span>
+    <% end %>
+  <% else %>
+    <p>There are no responses yet.</p>
+  <% end %>
+</div>
