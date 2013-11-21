@@ -10,7 +10,7 @@ describe Response do
 
   let(:response){ Response.create body: 'test body'}
 
-    it 'votes should defualt to 0' do
+    it 'votes should default to 0' do
       expect(response.votes).to eq 0
     end
 

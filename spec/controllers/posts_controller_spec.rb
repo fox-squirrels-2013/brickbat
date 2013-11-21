@@ -22,13 +22,13 @@ describe PostsController do
       expect{
       post :create, post: post_params
       expect(assigns(:post).title).to eq 'test title'
-      }.to change(Post, :count).by(1)
+      }.to change(Post, :count).by 1
     end
 
     it 'does not create a post with invalid params' do
       expect{
       post :create, post: { title: 'test title' } 
-      }.to change(Post, :count).by(0)
+      }.to change(Post, :count).by 0
     end
   end
 

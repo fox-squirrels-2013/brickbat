@@ -8,7 +8,7 @@
   <h3><%= @post.title %></h3>
   <p><%= @post.body %></p>
 
-  <%= form_for :responses, url: responses_path do |f| %>
+  <%= form_for @response, url: responses_path do |f| %>
     <%= f.text_area :body %>
     <%= hidden_field_tag :post_id, "#{@post.id}" %>
 
@@ -17,7 +17,7 @@
 
   <% if @post %>
     <% @post.responses.each do |response| %>
-      <span class="response_votes"><%= response.votes %></span> <span class="response_body"><%= response.body %></span>
+      <p><span class="response_votes"><%= response.votes %></span> <span class="response_body"><%= response.body %></span></p>
     <% end %>
   <% else %>
     <p>There are no responses yet.</p>

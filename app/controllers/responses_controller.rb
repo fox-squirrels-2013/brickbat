@@ -5,11 +5,8 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    p params[:responses]
-    p params[:post_id]
-    @response = Response.new params[:responses]#, post_id: params[:post_id]
-    @response.post_id = params[:post_id]
-    p @response
+    @response = Response.new params[:response]
+    @response.post_id = params[:post_id] if params[:post_id]
     if @response.save
       redirect_to post_path( @response.post ) 
     else
