@@ -1,6 +1,6 @@
 Brickbat::Application.routes.draw do
 
-  root to: "sessions#index"
+  root to: "posts#index"
   get "/auth/:provider/callback", to: "sessions#create"
   get '/logout', to: "sessions#destroy"
 

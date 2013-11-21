@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   end
 
   def new 
-    @post = Post.new
+    if session[:user_id]
+      @post = Post.new
+    else
+      render :non_user
+    end  
   end
 
   def create
