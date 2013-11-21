@@ -7,5 +7,4 @@ describe Post do
   it { should allow_mass_assignment_of :title }
   it { should allow_mass_assignment_of :body }
 
-
 end
