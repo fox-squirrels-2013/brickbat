@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20131121194548) do
   end
 
   create_table "responses", :force => true do |t|
-    t.string   "body"
     t.integer  "post_id"
+    t.integer  "user_id"
+    t.string   "body"
     t.integer  "votes_count", :default => 0
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false

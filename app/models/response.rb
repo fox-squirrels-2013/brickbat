@@ -3,7 +3,7 @@ class Response < ActiveRecord::Base
   validates_presence_of :body
 
   has_many :votes
-
+  belongs_to :user
   belongs_to :post
 
   def up_vote

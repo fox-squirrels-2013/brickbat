@@ -1,7 +1,7 @@
 <div id='show_post'>
   <h1><%= @post.title %></h1>
   <hr>
-  <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= User.find_by_id(session[:user_id]).username %></span></p>
+  <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
   <hr>
 
 
@@ -42,7 +42,7 @@
         <div class="post_responses">
           <span class="response_votes"><%= response.votes_count %></span> 
           <span class="response_body"><%= response.body %></span>
-          <span class="response_author">@duder</span>
+          <span class="response_author">@<%= response.user.username %></span>
         </div>
       
 
