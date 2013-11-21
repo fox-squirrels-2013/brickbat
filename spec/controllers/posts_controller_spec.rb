@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PostsController do
 
-  let!(:post_obj) { Post.create title: 'test title', body: 'test body'}
+  let!(:post_obj) { Post.create title: 'test title', body: 'test body' }
 
   it '#index' do
     get :index    
@@ -10,6 +10,7 @@ describe PostsController do
   end
 
   it '#new' do
+    # Should we use a let for session[user_id] here?
     get :new
     expect(assigns(:post)).to be_an_instance_of Post
   end
