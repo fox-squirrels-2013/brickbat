@@ -18,7 +18,14 @@ group :assets do
 end
 
 group :test, :development do
-	gem 'rspec-rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+end
+
+
+group :test do
+	gem 'capybara'
+  gem 'database_cleaner'
 end
 
 gem 'jquery-rails'
