@@ -18,4 +18,4 @@ spec.txt
 
 routes.txt
 
-coverage/
+coverage/*
