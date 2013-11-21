@@ -1,33 +1,39 @@
-	<div id="new_post">
-
-		<h1>Create a New Post</h1>
-
-		<%= form_for :post, url: posts_path do |f| %>
+<div id="new_post">
+  
+	<h1>Create a New Post</h1>
+  <%if session[:errors] %>
+    <% session[:errors].each {|e,m| %>
+    <%= "#{e} #{m}"%><br />
+    <%}%>
+    <% session[:errors] = nil %>
+  <%end%>
+	<%= form_for :post, url: posts_path do |f| %>
     <div id='form-content'>
 
-		<div id='input-title'>
-      <%= f.label :title %>
-      <%= f.text_field :title %>      
-    </div>
+  		<div id='input-title'>
+        <%= f.label :title %>
+        <%= f.text_field :title %>      
+      </div>
 
-    <div id='input-extras'>
-      <span class='input-prepend'>@</span>
-      <%= text_field_tag :mention %>      
-      <span class='input-prepend'>#</span>
-      <%= text_field_tag :hashtag %>  
-      <%= label_tag :countdown, 'Countdown' %>    
-      <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
-    </div>
+      <div id='input-extras'>
+        <span class='input-prepend'>@</span>
+        <%= text_field_tag :mention %>      
+        <span class='input-prepend'>#</span>
+        <%= text_field_tag :hashtag %>  
+        <%= label_tag :countdown, 'Countdown' %>    
+        <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
+      </div>
 
-		<div id="post-body-div">
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 10 %>
+		  <div id="post-body-div">
+        <%= f.label :body %>
+        <%= f.text_area :body, rows: 10 %>
+      </div>
     </div>
-  </div>
-		<div><%= f.submit "Create" %></div>
-		<% end %>
-
-	</div>
+		
+    <div><%= f.submit "Create" %></div>
+    
+  <% end %>
+</div>
 
 
 
