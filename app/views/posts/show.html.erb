@@ -6,7 +6,7 @@
 
 
   <% if session[:user_id] %>
-  <%= form_for @response, url: responses_path do |f| %>
+  <%= form_for @response, url: post_responses_path(@post.id) do |f| %>
   <p>Submit a new response</p>
 
   <div><%= f.text_field :body %></div>

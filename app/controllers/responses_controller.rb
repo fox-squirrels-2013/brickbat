@@ -10,7 +10,7 @@ class ResponsesController < ApplicationController
     if @response.save
       redirect_to post_path( @response.post ) 
     else
-      redirect_to new_response_path
+      redirect_to new_post_response_path(params[:post_id])
     end
   end
 
