@@ -179,3 +179,15 @@ input[type="submit"]:hover {
 #nonuser a {
 	color: #2980b9;
 }
+
+.edit_response input{
+	width: 70px;
+	display: inline;
+}
+.edit_response {
+	display: inline;
+}
+
+/*.post_responses{
+	display: inline;
+}*/
