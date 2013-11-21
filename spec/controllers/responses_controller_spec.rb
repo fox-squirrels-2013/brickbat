@@ -7,7 +7,7 @@ describe ResponsesController do
 
 
   it '#new' do
-    get :new
+    get :new, post_id: post_obj.id
     expect(assigns(:response)).to be_an_instance_of Response
   end
 
@@ -17,14 +17,14 @@ describe ResponsesController do
     
     it 'creates a post with valid params' do
       expect{
-      post :create, response: response_params
+      post :create, response: response_params, post_id: post_obj.id
       # expect(assigns(:response).body).to eq 'test body'
       }.to change(Response, :count).by 1
     end
 
     it 'does not create a post with invalid params' do
       expect{
-      post :create, response: { } 
+      post :create, response: { }, post_id: post_obj.id 
       }.to change(Response, :count).by 0
     end
   end

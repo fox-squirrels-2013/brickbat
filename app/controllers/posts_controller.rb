@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def new 
+    @post = Post.new
     if session[:user_id]
       @post = Post.new
     else
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def vote
-    
+
     response = Response.find_by_id(params[:response_id].to_i)
     response.votes += 1 if params[:commit] == "Up"
     response.votes -= 1 if params[:commit] == "Down"

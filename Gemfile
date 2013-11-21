@@ -26,7 +26,9 @@ end
 group :test do
 	gem 'capybara'
   gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end
+
 gem 'omniauth-twitter'
 gem 'jquery-rails'
 
