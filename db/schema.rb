@@ -11,9 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121014642) do
+ActiveRecord::Schema.define(:version => 20131121194548) do
 
   create_table "posts", :force => true do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.string   "body"
     t.datetime "created_at", :null => false
@@ -22,10 +23,10 @@ ActiveRecord::Schema.define(:version => 20131121014642) do
 
   create_table "responses", :force => true do |t|
     t.string   "body"
-    t.integer  "votes",      :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
     t.integer  "post_id"
+    t.integer  "votes_count", :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -33,6 +34,12 @@ ActiveRecord::Schema.define(:version => 20131121014642) do
     t.string  "token"
     t.string  "secret"
     t.string  "username"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer "user_id"
+    t.integer "response_id"
+    t.string  "vote"
   end
 
 end

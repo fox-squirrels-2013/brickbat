@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-validates :uid, presence: true
+	has_many :votes
+	has_many :posts
+	validates :uid, presence: true
 	def self.create_with_auth(auth)
 		user = User.new 
 		user.uid = auth.uid.to_i 

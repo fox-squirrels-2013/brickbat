@@ -5,4 +5,5 @@ class Post < ActiveRecord::Base
   validates_presence_of :body
 
   has_many :responses
+  belongs_to :user
 end
