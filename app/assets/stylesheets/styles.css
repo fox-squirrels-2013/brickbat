@@ -15,3 +15,7 @@ input, textarea {
 textarea {
   height: 100px;
 }
+
+form{
+  display: inline;
+}

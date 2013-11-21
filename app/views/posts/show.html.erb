@@ -16,10 +16,27 @@
   <% end %>
 
   <% if @post %>
+  <!-- sorting algorithm for responses to a post -->
     <% @post.responses.each do |response| %>
-      <p><span class="response_votes"><%= response.votes %></span> <span class="response_body"><%= response.body %></span></p>
+      <p> 
+        <%= form_for response, url: posts_vote_path, method: :post do |f| %>
+          <%= hidden_field_tag :response_id, "#{response.id}" %>
+          <%= f.submit "Up" %>
+        <% end %>
+
+        <%= form_for response, url: posts_vote_path, method: :post do |f| %>
+          <%= hidden_field_tag :response_id, "#{response.id}" %>
+          <%= f.submit "Down" %>
+        <% end %> 
+
+       <span class="response_votes"> <%= response.votes %></span> <span class="response_body"><%= response.body %></span>
+      </p>
     <% end %>
   <% else %>
     <p>There are no responses yet.</p>
   <% end %>
 </div>
+
+<!-- add table to verify if a user has voted on a response -->
+
+
