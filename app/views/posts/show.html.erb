@@ -1,19 +1,23 @@
-<div class="container">
-  <header>
-    <h1>Brickbat</h1>
-    <nav>
-    </nav>
-  </header>
+<div id='show_post'>
+  <h1><%= @post.title %></h1>
+  <hr>
+  <p id="show_post_body"><%= @post.body %> <span id="poster">@postdude</span></p>
+  <hr>
 
-  <h3><%= @post.title %></h3>
-  <p><%= @post.body %></p>
 
+  <% if session[:user_id] %>
   <%= form_for @response, url: responses_path do |f| %>
-    <%= f.text_area :body %>
-    <%= hidden_field_tag :post_id, "#{@post.id}" %>
+  <p>Submit a new response</p>
 
-    <%= f.submit "Submit" %>
+  <div><%= f.text_field :body %></div>
+  <%= hidden_field_tag :post_id, "#{@post.id}" %>
+  <div><%= f.submit "Submit new Response" %></div>
   <% end %>
+  <% else %>
+  <div id="nonuser">
+    Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
+  </div><% end %>
+
 
   <% if @post %>
   <!-- sorting algorithm for responses to a post -->
@@ -29,14 +33,18 @@
           <%= f.submit "Down" %>
         <% end %> 
 
-       <span class="response_votes"> <%= response.votes %></span> <span class="response_body"><%= response.body %></span>
+        <div class="post_responses">
+          <span class="response_votes"><%= response.votes %></span> 
+          <span class="response_body"><%= response.body %></span>
+          <span class="response_author">@duder</span>
+        </div>
       </p>
+
     <% end %>
+
   <% else %>
     <p>There are no responses yet.</p>
   <% end %>
 </div>
 
 <!-- add table to verify if a user has voted on a response -->
-
-

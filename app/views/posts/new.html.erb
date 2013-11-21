@@ -1,1 +1,15 @@
-new.html.erb
+	<div id="new_post">
+
+		<h1>Create a New Post</h1>
+
+		<%= form_for :post, url: posts_path do |f| %>
+		<div><%= f.text_field :title, placeholder: 'Title' %></div>
+		<div><%= f.text_area :body, placeholder: 'Body' %></div>
+		<div><%= f.submit "Create" %></div>
+		<% end %>
+
+	</div>
+
+
+
+
