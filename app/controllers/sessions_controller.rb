@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-	def index
-	end
 	def create
   	auth = request.env['omniauth.auth']
   	# debugger
