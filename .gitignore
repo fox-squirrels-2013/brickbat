@@ -19,3 +19,7 @@ spec.txt
 routes.txt
 
 coverage/*
+
+.env
+
+*.lock
