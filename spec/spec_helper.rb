@@ -39,7 +39,19 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-  config.include Capybara::DSL
-end
 
-OmniAuth.config.test_mode = true
+  config.include Capybara::DSL
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+    provider: 'twitter',
+    uid: 123456,
+    info: {
+      nickname: "testuser"
+    },
+    credentials: {
+      token: "123123123123",
+      secret: "321123321123"
+    }
+  })
+end
