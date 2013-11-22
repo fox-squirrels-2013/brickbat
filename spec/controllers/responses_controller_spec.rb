@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ResponsesController do
 
-  let!(:response_obj) { Response.create body: 'test body'}
   let!(:post_obj) { Post.create title: 'test title', body: 'test body'}
+  let!(:valid_response) { {body: 'test body'} }
 
   it '#new' do
     get :new, :post_id => post_obj.id
@@ -11,21 +11,24 @@ describe ResponsesController do
   end
 
   context '#create' do
-
-    let!(:response_params) { { body: 'test body', post_id: post_obj.id } }
     
-    it 'creates a post with valid params' do
+    it 'creates a response with valid params' do
       expect{
-      post :create, :post_id => post_obj.id, response: response_params
-      # expect(assigns(:response).body).to eq 'test body'
+      post :create, :post_id => post_obj.id, response: valid_response
       }.to change(Response, :count).by 1
     end
 
-    it 'does not create a post with invalid params' do
+    it 'does not create a response with invalid params' do
       expect{
-      post :create, :post_id => post_obj.id, response: { } 
+      post :create, :post_id => post_obj.id, response: {}
       }.to change(Response, :count).by 0
     end
   end
 
+  context '#vote' do
+    # expect{
+    #   post :create, :post_id => post_obj.id, response: valid_response
+    # }
+
+  end
 end

@@ -26,7 +26,7 @@ describe PostsController do
     expect(post_obj).to be_an_instance_of Post
   end
 
-  context '#create' do
+  context '#create' do # cannot properly test until the issue with posting to Twitter is figured out
     
     it 'creates a post with valid params' do
       expect{ 
