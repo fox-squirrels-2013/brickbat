@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     user = User.find_by_id(session[:user_id])
-    client = TwitterHelper.new(user)
+    # client = TwitterHelper.new(user)
   
     @post = Post.new
     @post.title = params[:post][:title]
@@ -33,8 +33,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find params[:id]
     @sorted_responses = @post.responses.find(:all, :order => "votes_count DESC")
-
-    @response = Response.new
   end
 
   def vote

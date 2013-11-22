@@ -1,10 +1,9 @@
+<div id="new_response_form">
+  <%= form_for @response, url: post_responses_path, remote: true, html: { class: "pure-form pure-form-aligned" } do |f| %>
 
-<%= form_for @response, url: post_responses_path, html: { class: "pure-form pure-form-aligned" } do |f| %>
+  <p>Submit a new response</p>
+  <div><%= f.text_field :body %></div>
+  <div><%= f.submit "Submit" %></div>
 
-<p>Submit a new response</p>
-
- <div><%= f.text_field :body %></div>
-
-<div><%= f.submit "Submit new Response" %></div>
-
-<% end %>
+  <% end %>
+</div>
