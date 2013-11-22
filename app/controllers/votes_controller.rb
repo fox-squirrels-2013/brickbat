@@ -1,15 +1,16 @@
 class VotesController < ApplicationController
 
   def create
-
-    vote = Vote.where(user_id: session[:user_id], 
-                      response_id: params[:vote][:response_id]).first
+    vote = Vote.where(user_id:     session[:user_id], 
+                      response_id: params[:response_id]).first
     if vote.nil?
-      vote = Vote.new user_id: session[:user_id],
-                      response_id: params[:vote][:response_id],
-                      vote: params[:vote][:vote]
+      p 'creating vote'
+      vote = Vote.new user_id:     session[:user_id],
+                      response_id: params[:response_id],
+                      vote:        params[:vote]
     else
-      vote.vote = params[:vote][:vote]
+      p 'vote overwrite'
+      vote.vote = params[:vote]
     end
 
     if vote.save
