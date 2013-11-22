@@ -9,7 +9,7 @@
     <% session[:errors] = nil %>
   <%end%>
 
-	<%= form_for :post, url: posts_path do |f| %>
+	<%= form_for :post, url: posts_path, html: { class: "pure-form pure-form-aligned" } do |f| %>
     <div id='form-content'>
 
   		<div id='input-title'>
