@@ -61,8 +61,3 @@ auth_hash.credentials = auth_credentials
 auth_hash.info = info_hash
 
 OmniAuth.config.mock_auth[:twitter] = auth_hash
-
-# stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
-#   with(:body => {"status"=>"test body"},
-#       :headers => {'Accept'=>'application/json', 'Authorization'=>'OAuth oauth_consumer_key="bPTrUqEyW8yvKIxhKB7Mxw", oauth_nonce="1fa4185e0cdcef9b086a140690d611eb", oauth_signature="UgYz2dz19ztw2og2kkGzoLz9cbQ%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1385098497", oauth_token="123123123123", oauth_version="1.0"', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Twitter Ruby Gem 5.0.0'}).
-#   to_return(:status => 200, :body => "", :headers => {})
