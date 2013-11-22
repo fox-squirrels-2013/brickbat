@@ -22,8 +22,8 @@ describe 'Guest features' do
         expect(page).to have_content 'Login with Twitter'
       end
     end
-  end
-
+  end # end of currently working tests
+end
   # describe 'can view individual posts' do
   #   before :each do
   #     @post = Post.create title: 'test title', body: 'test body'
@@ -36,28 +36,27 @@ describe 'Guest features' do
   #   it 'can click on a link to a post' do
   #     expect(page).to have_content 'test body'
   #   end
-  # end
 
-  #   it 'sees a login message' do
-  #     expect(page).to have_content 'Please Login with Twitter to respond to posts.'
-  #   end
+#   #   it 'sees a login message' do
+#   #     expect(page).to have_content 'Please Login with Twitter to respond to posts.'
+#   #   end
 
-  #   it 'sees responses to posts' do
-  #     expect(page).to have_content 'response'
-  #   end
-  # end
+#   #   it 'sees responses to posts' do
+#   #     expect(page).to have_content 'response'
+#   #   end
+#   # end
 
-  # describe 'cannot create a response' do
-  #   before :each do
-  #     Post.create title: 'test title', body: 'test body'
-  #   end
+#   # describe 'cannot create a response' do
+#   #   before :each do
+#   #     Post.create title: 'test title', body: 'test body'
+#   #   end
 
-  #   it 'does not see a form to create a response' do
-  #     visit '/'
+#   #   it 'does not see a form to create a response' do
+#   #     visit '/'
 
-  #     click_on 'test title'
+#   #     click_on 'test title'
 
-  #     expect(page).to_not have_content 'Submit new Response'
-  #   end
-  # end
-end
+#   #     expect(page).to_not have_content 'Submit new Response'
+#   #   end
+#   # end
+# end
