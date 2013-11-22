@@ -10,8 +10,9 @@
 
         <%= link_to post_path(post.id) do %> 
           <li><p>
-            <%= post.title %> 
-            <span class='post_author'>@<%= post.user.username %><span>
+            <span id='post_title'><%= post.title %></span>
+            <span id='post_author'>@<%= post.user.username %></span>
+            <span id='post_responses'><%= post.responses.count %> responses</span>
           </p></li>
         <% end %>
 
