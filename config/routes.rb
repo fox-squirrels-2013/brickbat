@@ -5,8 +5,12 @@ Brickbat::Application.routes.draw do
   get '/logout', to: "sessions#destroy"
 
   resources :posts, except: [:edit, :update, :destroy] do
-  	resources :responses, only: [:new, :create]
+  	resources :responses, only: [:new, :create] do
+      resources :comments, only: [:new, :create, :index]
+    end
   end
+  resources :comments, only: :show
+
   post '/posts/vote', to: "posts#vote"
 
 end
