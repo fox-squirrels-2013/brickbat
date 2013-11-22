@@ -4,9 +4,24 @@
     <hr>
 
     <% unless @posts.empty? %>
+    
     <ul>
       <% @posts.each do |post| %>
-      <li><p><%= link_to post.title, post_path(post.id) %> <span class='post_author'>@duder<span></p></li>
+
+        <%= link_to post_path(post.id) do %> 
+          <li><p>
+            <span id='index_title'><%= post.title %></span>
+            <% author = username(post) %>
+            <span id='index_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
+            
+            <ul>
+              <li><span id='index_responses'><%= post.responses.count %> responses</span></li>
+              <li><span id='index_responses'>1 hour left</span></li>
+            </ul>
+          
+          </p></li>
+        <% end %>
+
       <% end %>
     </ul>
 

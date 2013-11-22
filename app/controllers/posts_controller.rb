@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include TwitterHelper
 
   def index
     @posts = Post.all
@@ -13,11 +14,15 @@ class PostsController < ApplicationController
   end
 
   def create
+    user = User.find_by_id(session[:user_id])
+    # client = TwitterHelper.new(user)
+  
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
     @post.user_id = session[:user_id]
     if @post.save
+      # client.update(@post.body)
       redirect_to post_path(@post)
     else
       session[:errors] = @post.errors
@@ -28,8 +33,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find params[:id]
     @sorted_responses = @post.responses.find(:all, :order => "votes_count DESC")
-
-    @response = Response.new
   end
 
   def vote
@@ -44,6 +47,7 @@ class PostsController < ApplicationController
     if params[:commit] == "Up"
       response.votes_count += 1
       if v
+        response.votes_count += 1
         v.vote = "Up"
         v.save
       end
@@ -52,9 +56,16 @@ class PostsController < ApplicationController
     if params[:commit] == "Down"
       response.votes_count -= 1
       if v
+        response.votes_count -= 1
         v.vote = "Down"
         v.save
       end
+    end
+
+    if params[:commit] == "Clear"
+      response.votes_count -= 1 if params[:previous_vote] == "Up"
+      response.votes_count += 1 if params[:previous_vote] == "Down"
+      v.destroy
     end
 
     response.save

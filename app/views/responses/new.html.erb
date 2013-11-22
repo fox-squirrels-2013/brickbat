@@ -1,1 +1,9 @@
-new.html.erb
+<div id="new_response_form">
+  <%= form_for @response, url: post_responses_path, remote: true, html: { class: "pure-form pure-form-aligned" } do |f| %>
+
+  <p>Submit a new response</p>
+  <div><%= f.text_field :body %></div>
+  <div><%= f.submit "Submit" %></div>
+
+  <% end %>
+</div>

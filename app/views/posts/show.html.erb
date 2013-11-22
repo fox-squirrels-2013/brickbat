@@ -1,56 +1,35 @@
 <div id='show_post'>
   <h1><%= @post.title %></h1>
   <hr>
-  <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
+    <% author = username(@post) %>
+
+  <p id="show_post_body"><%= @post.body %> <span id='index_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span></p>
   <hr>
 
-
-  <% if session[:user_id] %>
-    <%= form_for @response, url: post_responses_path(@post.id) do |f| %>
-      <p>Submit a new response</p>
-
-      <div><%= f.text_field :body %></div>
-      <%= hidden_field_tag :post_id, "#{@post.id}" %>
-      <div><%= f.submit "Submit new Response" %></div>
-    <% end %>
-  <% else %>
+  <div id="new_response">
+    <% if session[:user_id] %>
+    <p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id), remote: true %></p>
+    <% else %>
     <div id="nonuser">
-      Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
+      <p><%=link_to "Login with Twitter", "/auth/twitter" %> to respond.</p>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 
 
   <% if @post %>
-  <!-- sorting algorithm for responses to a post -->
-    <% @sorted_responses.each do |response| %>
-      
-        <%v = Vote.where(user_id: session[:user_id], response_id: response.id).first %>
-        <% if ((v && v.vote == "Down") && v.vote != "Up") || (Vote.where(user_id: session[:user_id], response_id: response.id, vote: "Down").empty? && v == nil) %>
-          <%= form_for response, url: posts_vote_path, method: :post do |f| %>
-            <%= hidden_field_tag :response_id, "#{response.id}" %>
-            <%= f.submit "Up" %>
-          <% end %>
-        <% end %>
-        
-        <% if ((v && v.vote == "Up") && v.vote != "Down") || (Vote.where(user_id: session[:user_id], response_id: response.id, vote: "Up").empty? && v == nil) %>
-          <%= form_for response, url: posts_vote_path, method: :post do |f| %>
-            <%= hidden_field_tag :response_id, "#{response.id}" %>
-            <%= f.submit "Down" %>
-          <% end %>
-        <% end %> 
 
-        <div class="post_responses">
-          <span class="response_votes"><%= response.votes_count %></span> 
-          <span class="response_body"><%= response.body %></span>
-          <span class="response_author">@<%= response.user.username %></span>
-        </div>
-      
+  <% @sorted_responses.each do |response| %>
 
-    <% end %>
+  <% @response = response %>
 
+  <%= render partial: 'layouts/response', locals: { response: @response } %>
+
+
+  <% end %>
+
+  
   <% else %>
-    <p>There are no responses yet.</p>
+  <p>There are no responses yet.</p>
   <% end %>
 </div>
-
-<!-- add table to verify if a user has voted on a response -->
