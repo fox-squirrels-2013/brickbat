@@ -4,14 +4,22 @@
     <hr>
 
     <% unless @posts.empty? %>
-      <ul>
-        <% @posts.each do |post| %>
-        <li><p><%= link_to post.title, post_path(post.id) %> <span class='post_author'>@duder<span></p></li>
+    
+    <ul>
+      <% @posts.each do |post| %>
+
+        <%= link_to post_path(post.id) do %> 
+          <li><p>
+            <%= post.title %> 
+            <span class='post_author'>@<%= post.user.username %><span>
+          </p></li>
         <% end %>
-      </ul>
+
+      <% end %>
+    </ul>
 
     <% else %>
-      <p>There are no posts to display.</p>
+    <p>There are no posts to display.</p>
     <% end %>
 
     <hr>
