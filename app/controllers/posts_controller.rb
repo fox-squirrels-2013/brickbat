@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post.body = params[:post][:body]
     @post.user_id = session[:user_id]
     if @post.save
-      # client.update(@post.body)
+      client.update(@post.body)
       redirect_to post_path(@post)
     else
       session[:errors] = @post.errors
