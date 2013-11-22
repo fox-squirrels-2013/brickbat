@@ -2,6 +2,7 @@ class ResponsesController < ApplicationController
 
   def new
     @response = Response.new
+    render :new, layout: false
   end
 
   def create

@@ -6,13 +6,14 @@
 
 <div id="new_response">
   <% if session[:user_id] %>
-<p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id) %></p>
+<p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id), remote: true %></p>
   <% else %>
     <div id="nonuser">
       Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
     </div>
     <% end %>
 </div>
+
   <% if @post %>
   <!-- sorting algorithm for responses to a post -->
     <% @sorted_responses.each do |response| %>
