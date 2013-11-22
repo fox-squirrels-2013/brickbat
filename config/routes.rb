@@ -9,4 +9,5 @@ Brickbat::Application.routes.draw do
   end
   post '/posts/vote', to: "posts#vote"
 
+  get '/check', to: "posts#check"
 end
