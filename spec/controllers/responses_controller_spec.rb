@@ -13,17 +13,17 @@ describe ResponsesController do
   context '#create' do
 
     let!(:response_params) { { body: 'test body', post_id: post_obj.id } }
-    
+
     it 'creates a post with valid params' do
       expect{
-      post :create, :post_id => post_obj.id, response: response_params
-      # expect(assigns(:response).body).to eq 'test body'
+      post :create, post_id: post_obj.id, response: response_params
+      expect(assigns(:response).body).to eq 'test body'
       }.to change(Response, :count).by 1
     end
 
     it 'does not create a post with invalid params' do
       expect{
-      post :create, :post_id => post_obj.id, response: { } 
+      post :create, :post_id => post_obj.id, response: { }
       }.to change(Response, :count).by 0
     end
   end

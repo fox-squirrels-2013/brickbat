@@ -4,12 +4,12 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def new 
+  def new
     if session[:user_id]
       @post = Post.new
     else
       render :non_user
-    end  
+    end
   end
 
   def create
@@ -33,9 +33,9 @@ class PostsController < ApplicationController
   end
 
   def vote
-    
+
     response = Response.find_by_id(params[:response_id].to_i)
-    
+
     user = User.find_by_id(session[:user_id])
     v = Vote.where(user_id: session[:user_id], response_id: response.id).first
 
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
         v.save
       end
     end
-    
+
     if params[:commit] == "Down"
       response.votes_count -= 1
       if v
@@ -62,5 +62,5 @@ class PostsController < ApplicationController
     redirect_to "/posts/#{id}"
 
   end
-  
+
 end
