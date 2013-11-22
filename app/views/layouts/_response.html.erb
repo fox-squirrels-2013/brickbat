@@ -25,5 +25,7 @@
         <div class="post_responses">
           <span class="response_votes"><%= @response.votes_count %></span> 
           <span class="response_body"><%= @response.body %></span>
-          <span class="response_author">@<%= @response.user.username %></span>
+
+            <% author = username(@response.post) %>
+            <span class='response_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
         </div>

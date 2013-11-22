@@ -1,7 +1,9 @@
 <div id='show_post'>
   <h1><%= @post.title %></h1>
   <hr>
-  <p id="show_post_body"><%= @post.body %> <span id="poster"><%= link_to '@' + @post.user.username, 'https://twitter.com/' + @post.user.username, target: '_blank' %></span></p>
+    <% author = username(@post) %>
+
+  <p id="show_post_body"><%= @post.body %> <span id='index_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span></p>
   <hr>
 
   <div id="new_response">
@@ -20,6 +22,7 @@
   <% @sorted_responses.each do |response| %>
 
   <% @response = response %>
+
   <%= render partial: 'layouts/response', locals: { response: @response } %>
 
 

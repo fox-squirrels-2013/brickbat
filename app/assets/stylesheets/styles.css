@@ -54,7 +54,7 @@ header {
 }
 
 /*******************/
-/*    Conatainer   */
+/*    Container   */
 /*******************/
 
 .container {
@@ -116,7 +116,7 @@ header {
 	float: right;
 }
 
-.container ul a:hover {
+.container ul a:first-child:hover {
 	text-decoration: none;
 }
 
@@ -226,17 +226,37 @@ input[type="submit"]:hover {
 	margin-top: 50px;
 }
 
+/*******************/
+/* Post Responses  */
+/*******************/
+
 .post_responses {
+	text-align: left;
 	margin: 10px 0 ;
 	color: #fff;
 	padding: 20px;
 	background-color: #34495e;
+	position: relative;
 }
 
 .post_responses:hover {
 	background-color: #2c3e50;
 }
 
+.response_author a {
+	color: #fff;
+}
+/*
+.response_votes {
+	position: absolute;
+	font-size: 30px;
+	background-color: #333;
+	padding: 5px;
+}*/
+
+/*******************/
+/*Response Buttons */
+/*******************/
 
 .edit_response input{
 	width: 70px;
