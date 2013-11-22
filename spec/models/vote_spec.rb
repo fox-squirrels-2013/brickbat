@@ -15,4 +15,13 @@ describe Vote do
   it { should belong_to :user }
   it { should belong_to :response }
 
+
+  let(:vote){ Vote.create user_id: 1, response_id: 1, vote: 'Up' }
+
+  # context "vote and response can be found from user" do
+    
+
+
+  # end
+
 end
