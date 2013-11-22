@@ -9,4 +9,6 @@ Brickbat::Application.routes.draw do
   end
   post '/posts/vote', to: "posts#vote"
 
+  resources :votes, only: [:create]
+
 end

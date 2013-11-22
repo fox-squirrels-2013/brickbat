@@ -3,6 +3,18 @@ $(function(){
     $('#new_response')[0].innerHTML = data
     listenForNewResponse()
   })
+
+  $('.up_vote').on('ajax:success', function(e, data, status, xhr){
+    console.log('up_vote')
+    $(this).parent().find('span.response_votes')[0].innerText = data['new_total']
+    console.log(data['new_total'])
+  })
+
+  $('.down_vote').on('ajax:success', function(e, data, status, xhr){
+    console.log('down_vote')
+    $(this).parent().find('span.response_votes')[0].innerText = data['new_total']
+    console.log(data['new_total'])
+  })
 })
 
 
