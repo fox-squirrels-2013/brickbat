@@ -1,21 +1,22 @@
 body {
 	margin: 0px;
 	padding: 0px;
-font-family: 'Source Sans Pro', sans-serif;
-
-
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 200;
-
-	/*font-family: Arial, Helvetica, sans-serif;*/
 }
 
 a {
+	color: #2980b9;
 	text-decoration: none;
 }
 
 a:hover {
 	text-decoration: underline;
 }
+
+/*******************/
+/*Header and Navbar*/
+/*******************/
 
 header {
 	background-color: #c0392b;
@@ -53,10 +54,14 @@ header {
 	margin-left: 10px;
 }
 
+
+/*******************/
+/*    Conatainer   */
+/*******************/
+
 .container {
-	width: 800px;
+	width: 40%;
 	margin: auto;
-	padding-top: 10px;
 }
 
 .container h1 {
@@ -68,6 +73,10 @@ header {
 	list-style: none;
 }
 
+.container a {
+	color: #333;
+}
+
 .container #posts p {
 	margin: 0;
 	padding: 15px 30px 15px 30px;
@@ -77,58 +86,47 @@ header {
 	color: #2980b9;
 }
 
-.container a {
-	color: #111;
-}
-
 .container li:hover {
 	background-color: #ecf0f1;
 }
 
+
+/*******************/
+/*  New Post Form  */
+/*******************/
+
 #new_post {
 	text-align: center;
-
 }
 
 #form-content {
-	border-radius: 8px;
-	color: #222;
+	color: #333;
 	width: 90%;
 	margin: auto;
-	/*background-color: #2c3e50;*/
-	padding: 20px 0 20px 0;
 }
 
-/*form input, */
 
-form textarea {
-font-size: 20px;
- border: none;
-}
-
-form input {
- border: none;
+form input, textarea {
 	margin-bottom: 10px;
-	/*font-size: 20px;*/
 }
 
 
 #post_title {
-	width: 80%;
-	/*margin-right: 20px;*/
+	margin-right: 10px;
+	width: 56%;
 }
 
 #mention, #hashtag {
-	margin-right: 10px;
 	border-radius: 0 4px 4px 0;
 }
 
 #mention {
-	width: 18%;
+	width: 20%;
 }
 
 #hashtag {
-	width: 27%;
+	margin-right: 10px;
+	width: 54%;
 }
 
 #post_body {

@@ -2,37 +2,38 @@
 <div id="new_post">
   
 	<h1>Create a New Post</h1>
+  
   <%if session[:errors] %>
-    <% session[:errors].each {|e,m| %>
-    <%= "#{e} #{m}"%><br />
-    <%}%>
+  <% session[:errors].each do |e,m| %>
+  <p><%= "#{e} #{m}"%>/p>
+    <% end %>
     <% session[:errors] = nil %>
-  <%end%>
+    <%end%>
 
-	<%= form_for :post, url: posts_path, html: { class: "pure-form pure-form-aligned" } do |f| %>
+    <%= form_for :post, url: posts_path, html: { class: "pure-form pure-form-aligned" } do |f| %>
     <div id='form-content'>
 
-  		<div id='input-title'>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+      <div id='input-headers'>
+        <%= f.text_field :title, placeholder: 'title' %>
+
+        <span class='input-prepend'>@</span>
+        <%= text_field_tag :mention, nil, placeholder: "recipient"  %>      
+
       </div>
 
-      <div id='input-extras'>
-        <span class='input-prepend'>@</span>
-        <%= text_field_tag :mention %>      
+      <div id="post-body-div">
+        <%= f.text_area :body, rows: 10, placeholder: 'description' %>
+      </div>
+
+      <div id="hastag-input">
         <span class='input-prepend'>#</span>
-        <%= text_field_tag :hashtag %>  
+        <%= text_field_tag :hashtag, nil, placeholder: "optional hashtags" %>  
         <%= label_tag :countdown, 'Countdown' %>    
         <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
       </div>
-
-		  <div id="post-body-div">
-        <%= f.label :body %>
-        <%= f.text_area :body, rows: 10 %>
-      </div>
     </div>
-		
+    
     <div><%= f.submit "Create" %></div>
     
-  <% end %>
-</div>
+    <% end %>
+  </div>

@@ -11,7 +11,6 @@ class ResponsesController < ApplicationController
     @response.post_id = params[:post_id].to_i
     @response.body = params[:response][:body]
     if @response.save
-      # redirect_to post_path( @response.post )
       render partial: '/layouts/response', response: @response
     else
       render json: { error: 'You failed us.'}
