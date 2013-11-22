@@ -66,6 +66,10 @@ header {
   .container {
     width: 70%;
   }
+
+  .container ul ul {
+  	display: none;
+  }
 }
 
 .container h1 {
@@ -77,13 +81,18 @@ header {
 	list-style: none;
 }
 
+.container li {
+	position: relative;
+
+}
+
 .container li:hover {
 	background-color: #ecf0f1;
 }
 
 .container #posts p {
 	margin: 0;
-	padding: 15px 30px 15px 30px;
+	padding: 15px 30px 0px 30px;
 }
 
 .container #post_title {
@@ -97,11 +106,13 @@ header {
 .container #post_responses {
 	/*margin-top: 10px;*/
 	float: right;
-	font-size: 15px;
 	color: #333;
 }
 
 .container ul ul {
+	position: absolute;
+	right: 15px;
+	top: 17px;
 	float: right;
 }
 

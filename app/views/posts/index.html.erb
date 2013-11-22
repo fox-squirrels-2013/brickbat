@@ -12,7 +12,10 @@
           <li><p>
             <span id='post_title'><%= post.title %></span>
             <span id='post_author'>@<%= post.user.username %></span>
-            <span id='post_responses'><%= post.responses.count %> responses</span>
+            <ul>
+              <li><span id='post_responses'><%= post.responses.count %> responses</span></li>
+              <li><span id='post_responses'>1 hour left</span></li>
+            </ul>
           </p></li>
         <% end %>
 
