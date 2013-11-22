@@ -31,11 +31,18 @@ describe VotesController do
         }.to change(Vote, :count).by 0
     end
 
-    it 'should update existing vote with new vote type' do
+    it 'should update existing vote with new vote type if different' do
         Vote.create! user_id: 1, response_id: 1, vote: 'Down'
         post :create, vote: vote_params
         expect(parse_response_body('vote')).to eq "Up"
         expect(Vote.last.vote).to eq 'Up'
+    end
+
+    it 'should not update vote if vote time is the same' do
+        Vote.create! user_id: 1, response_id: 1, vote: 'Up'
+        post :create, vote: vote_params
+        expect(parse_response_body('vote')).to eq "Up"
+        expect(Vote.last.created_at).to eq Vote.last.updated_at
     end
   end
 
