@@ -50,8 +50,8 @@ RSpec.configure do |config|
       nickname: "testuser"
     },
     credentials: {
-      token: "123123123123",
-      secret: "321123321123"
+      token: '123123123123',
+      secret: '321321321321'
     }
   })
 end

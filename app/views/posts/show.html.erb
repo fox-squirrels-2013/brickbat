@@ -3,10 +3,13 @@
   <hr>
     <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
   <hr>
+  <% if @client %>
+    <%= @client %>
+  <% end %>
 
 <div id="new_response">
   <% if session[:user_id] %>
-<p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id) %></p>
+    <p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id) %></p>
   <% else %>
     <div id="nonuser">
       Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
@@ -38,7 +41,6 @@
           <span class="response_author">@<%= response.user.username %></span>
         </div>
       
-
     <% end %>
 
   <% else %>

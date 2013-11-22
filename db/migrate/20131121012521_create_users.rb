@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
   	create_table :users do |t|
-  		t.integer :uid
+  		t.column :uid, :bigint
 			t.string :token
 			t.string :secret
 			t.string :username

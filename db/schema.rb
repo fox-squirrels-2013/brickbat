@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20131121194548) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer "uid"
+    t.integer "uid",      :limit => 8
     t.string  "token"
     t.string  "secret"
     t.string  "username"

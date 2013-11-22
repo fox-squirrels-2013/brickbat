@@ -7,9 +7,6 @@ describe PostsController do
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
 
     @user = User.create_with_auth(request.env["omniauth.auth"])
-    @post = Post.new
-    @post.title = 'test title'
-    @post.user_id = @user.id
   end
 
   let!(:post_obj) do 
@@ -24,22 +21,6 @@ describe PostsController do
   it '#new' do
     get :new
     expect(post_obj).to be_an_instance_of Post
-  end
-
-  context '#create' do # cannot properly test until the issue with posting to Twitter is figured out
-    
-    it 'creates a post with valid params' do
-      expect{ 
-        @post.body = 'test body'       
-        @post.save
-      }.to change(Post, :count).by 1
-    end
-
-    it 'does not create a post with invalid params' do
-      expect{
-        @post.save
-      }.to change(Post, :count).by 0
-    end
   end
 
   it '#show' do
