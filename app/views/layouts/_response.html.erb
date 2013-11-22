@@ -1,7 +1,10 @@
-<%= link_to 'Up', votes_path(response_id: @response.id, vote: 'Up'), method: :post, remote: true %>
-<%= link_to 'Down', votes_path(response_id: @response.id, vote: 'Down'), method: :post, remote: true %>
+
 
 <div class="post_responses">
+
+  <%= link_to 'Up', votes_path(response_id: @response.id, vote: 'Up'), method: :post, remote: true, class: 'up_vote' %>
+<%= link_to 'Down', votes_path(response_id: @response.id, vote: 'Down'), method: :post, remote: true, class: 'down_vote' %>
+
 <span class="response_votes"><%= @response.vote_total %></span> 
 <span class="response_body"><%= @response.body %></span>
 

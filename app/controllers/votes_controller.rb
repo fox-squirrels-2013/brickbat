@@ -14,7 +14,7 @@ class VotesController < ApplicationController
     end
 
     if vote.save
-      render json: { response: "Vote registered", vote: vote.vote}
+      render json: { new_total: vote.response.votes_count}
     else
       render json: { error: 'There was an error saving the vote.'}
     end
