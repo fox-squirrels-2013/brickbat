@@ -9,6 +9,14 @@ font-family: 'Source Sans Pro', sans-serif;
 	/*font-family: Arial, Helvetica, sans-serif;*/
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 header {
 	background-color: #c0392b;
 	height: 65px;
@@ -23,11 +31,6 @@ header {
 
 #navbar a {
 	color: #fff;
-	text-decoration: none;
-}
-
-#navbar a:hover {
-	text-decoration: underline;
 }
 
 #navbar ul {
@@ -47,7 +50,7 @@ header {
 }
 
 #navbar #login a{
-	padding-left: 10px;
+	margin-left: 10px;
 }
 
 .container {
@@ -75,7 +78,6 @@ header {
 }
 
 .container a {
-	text-decoration: none;
 	color: #111;
 }
 
@@ -171,13 +173,12 @@ input[type="submit"]:hover {
 	color: #2980b9;
 }
 
-#post_new_response a:hover {
-	text-decoration: underline;
-}
-
 #new_response {
 	text-align: center;
-	
+}
+
+#new_response p a {
+	text-align: right;
 }
 
 #new_response_form {

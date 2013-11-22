@@ -9,15 +9,22 @@
     <p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id), remote: true %></p>
     <% else %>
     <div id="nonuser">
-      Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
+      <p>Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.</p>
     </div>
     <% end %>
   </div>
 
 
   <% if @post %>
-  <!-- sorted responses go in here -->
-  <%= render 'layouts/responses' %>
+
+  <% @sorted_responses.each do |response| %>
+
+  <% @response = response %>
+  <%= render partial: 'layouts/response', locals: { response: @response } %>
+
+
+  <% end %>
+
   
   <% else %>
   <p>There are no responses yet.</p>
