@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post.body = params[:post][:body]
     @post.user_id = session[:user_id]
     if @post.save
-      client.update(@post.body)
+      # client.update(@post.body)
       redirect_to post_path(@post)
     else
       session[:errors] = @post.errors
@@ -49,6 +49,7 @@ class PostsController < ApplicationController
     if params[:commit] == "Up"
       response.votes_count += 1
       if v
+        response.votes_count += 1
         v.vote = "Up"
         v.save
       end
@@ -57,9 +58,16 @@ class PostsController < ApplicationController
     if params[:commit] == "Down"
       response.votes_count -= 1
       if v
+        response.votes_count -= 1
         v.vote = "Down"
         v.save
       end
+    end
+
+    if params[:commit] == "Clear"
+      response.votes_count -= 1 if params[:previous_vote] == "Up"
+      response.votes_count += 1 if params[:previous_vote] == "Down"
+      v.destroy
     end
 
     response.save
