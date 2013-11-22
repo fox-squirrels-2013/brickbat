@@ -2,7 +2,7 @@
 
 		<h1>Create a New Post</h1>
 
-		<%= form_for :post, url: posts_path do |f| %>
+		<%= form_for :post, url: posts_path, html: { class: 'pure-form' } do |f| %>
     <div id='form-content'>
 
 		<div id='input-title'>
@@ -15,8 +15,9 @@
       <%= text_field_tag :mention %>      
       <span class='input-prepend'>#</span>
       <%= text_field_tag :hashtag %>  
-      <%= label_tag :countdown, 'Countdown' %>    
-      <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
+      <%= label_tag :countdown, 'Countdown' do %>    
+        <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
+      <% end %>
     </div>
 
 		<div id="post-body-div">
