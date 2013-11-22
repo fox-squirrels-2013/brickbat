@@ -1,7 +1,7 @@
 <div id='show_post'>
   <h1><%= @post.title %></h1>
   <hr>
-  <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
+    <p id="show_post_body"><%= @post.body %> <span id="poster">@<%= @post.user.username %></span></p>
   <hr>
 
 <div id="new_response">
@@ -9,7 +9,7 @@
 <p id='post_response_link'><%= link_to  'Post a Response', new_post_response_path(@post.id) %></p>
   <% else %>
     <div id="nonuser">
-      Please <%=link_to "Login to Respond", "/auth/twitter" %> to respond to posts.
+      Please <%=link_to "Login with Twitter", "/auth/twitter" %> to respond to posts.
     </div>
     <% end %>
 </div>
