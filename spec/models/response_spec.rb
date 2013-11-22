@@ -11,7 +11,7 @@ describe Response do
   let(:response){ Response.create body: 'test body'}
 
     it 'votes should default to 0' do
-      expect(response.votes).to eq 0
+      expect(response.votes_count).to eq 0
     end
 
 
@@ -19,12 +19,12 @@ describe Response do
 
       it 'up_vote increases votes by 1' do
         expect{ response.up_vote
-        }.to change(response, :votes).by 1
+        }.to change(response, :votes_count).by 1
       end
 
       it 'down_vote decreases votes by 1' do
         expect{ response.down_vote
-        }.to change(response, :votes).by -1
+        }.to change(response, :votes_count).by -1
       end
     end
 

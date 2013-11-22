@@ -24,45 +24,40 @@ describe 'Guest features' do
     end
   end
 
-  describe 'can view individual posts' do
-    before :each do
-      @post = Post.create title: 'test title', body: 'test body'
-      Response.create body: 'response', post_id: @post.id
+  # describe 'can view individual posts' do
+  #   before :each do
+  #     @post = Post.create title: 'test title', body: 'test body'
+  #     Response.create body: 'response', post_id: @post.id
 
-      visit '/'
-      click_on 'test title'
-    end
+  #     visit '/'
+  #     click_on 'test title'
+  #   end
 
-    it 'can click on a link to a post' do
-      expect(page).to have_content 'test body'
-    end
+  #   it 'can click on a link to a post' do
+  #     expect(page).to have_content 'test body'
+  #   end
+  # end
 
-    it 'sees a login message' do
-      expect(page).to have_content 'Please Login with Twitter to respond to posts.'
-    end
+  #   it 'sees a login message' do
+  #     expect(page).to have_content 'Please Login with Twitter to respond to posts.'
+  #   end
 
-    it 'sees responses to posts' do
-      expect(page).to have_content 'response'
-    end
+  #   it 'sees responses to posts' do
+  #     expect(page).to have_content 'response'
+  #   end
+  # end
 
-    # it 'cannot vote on response' do
-    #   click_on 'Up'
+  # describe 'cannot create a response' do
+  #   before :each do
+  #     Post.create title: 'test title', body: 'test body'
+  #   end
 
-    #   expect(page).to have_content 'Login to vote'
-    # end
-  end
+  #   it 'does not see a form to create a response' do
+  #     visit '/'
 
-  describe 'cannot create a response' do
-    before :each do
-      Post.create title: 'test title', body: 'test body'
-    end
+  #     click_on 'test title'
 
-    it 'does not see a form to create a response' do
-      visit '/'
-
-      click_on 'test title'
-
-      expect(page).to_not have_content 'Submit new Response'
-    end
-  end
+  #     expect(page).to_not have_content 'Submit new Response'
+  #   end
+  # end
 end

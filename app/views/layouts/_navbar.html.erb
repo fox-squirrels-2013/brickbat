@@ -5,7 +5,6 @@
 		<li><%= link_to 'Create Post', :new_post %></li>
 
 		<li id="login">
-
 			<% unless session[:user_id]%>
 				<%=link_to "Login with Twitter", "/auth/twitter" %>
 			<% else %>
