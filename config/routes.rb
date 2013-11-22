@@ -6,9 +6,10 @@ Brickbat::Application.routes.draw do
 
   resources :posts, except: [:edit, :update, :destroy] do
   	resources :responses, only: [:new, :create] do
-      resources :comments, only: [:new, :create]
+      resources :comments, only: [:new, :create, :index]
     end
   end
+  resources :comments, only: :show
 
   post '/posts/vote', to: "posts#vote"
 

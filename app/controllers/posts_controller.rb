@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def create
     user = User.find_by_id(session[:user_id])
     # client = TwitterHelper.new(user)
-  
+
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
