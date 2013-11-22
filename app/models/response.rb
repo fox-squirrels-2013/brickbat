@@ -7,9 +7,9 @@ class Response < ActiveRecord::Base
   belongs_to :post
 
   def vote_total
-    votes = self.votes.map(&:vote)
+    votes_mapped = self.votes.map(&:vote)
     value = 0
-    votes.each do |v|
+    votes_mapped.each do |v|
       value += 1 if v == 'Up'
       value -= 1 if v == 'Down'
     end
