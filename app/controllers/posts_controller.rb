@@ -14,15 +14,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    user = User.find_by_id(session[:user_id])
-    # client = TwitterHelper.new(user)
-  
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
     @post.user_id = session[:user_id]
+    @post.time_to_post = Time.now.hour + params[:countdown][0].to_i
+    @post.mention = params[:mention] unless params[:mention].empty?
+    @post.hashtag = params[:hashtag] unless params[:hashtag].empty?
     if @post.save
-      # client.update(@post.body)
       redirect_to post_path(@post)
     else
       session[:errors] = @post.errors
@@ -74,4 +73,17 @@ class PostsController < ApplicationController
 
   end
   
+  def check
+    user = User.find_by_id(session[:user_id])
+    client = TwitterHelper.new(user)
+    Post.all.each do |post|
+      if post.time_left <= 0 && post.tweet_success == false
+        client.update(post.highest_rated_response) 
+        post.tweet_success = true
+        post.save
+      end
+    end
+    redirect_to '/'
+  end
+
 end
