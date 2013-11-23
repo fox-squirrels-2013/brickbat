@@ -3,17 +3,29 @@
 $header: #c0392b
 $light-link: #fff
 $blue-link: #2980b9
-$light-grey: #333
-$dark-blue: #34495e
-$dark-blue-hover: #2c3e50
 $silver: #ecf0f1
+$grey: #333
+$dark-blue: #34495e
 $form-outline: #ccc
+
+// Mixins
+
+=margin-reset
+  margin: 0px
+  padding: 0px
+
+=form-style($bg: $form-outline)
+  border: 1px solid $form-outline
+  background-color: $bg
+
+=form-border-radius($tl: 0px, $tr: 4px, $br: 4px, $bl: 0px)
+  border-radius: $tl $tr $br $bl
+
 
 // Main
 
 body
-  margin: 0px
-  padding: 0px
+  +margin-reset
   font-family: 'Source Sans Pro', sans-serif
   font-weight: 200
 
@@ -41,8 +53,7 @@ header
     color: $light-link
 
   ul
-    margin: 0px
-    padding: 0px
+    +margin-reset
 
   li
     display: inline-block
@@ -100,15 +111,12 @@ header
     padding: 15px 30px 0px 30px
   
   #index_title
-    font-size: 35px
-    color: $light-grey
-  
-  #index_title
-    color: $light-grey
+    font-size: 35px  
+    color: $grey
   
   #index_responses
     float: right
-    color: $light-grey
+    color: $grey
 
 
 // New Post Form
@@ -128,11 +136,11 @@ textarea
   width: 56%
 
 #mention
-  border-radius: 0 4px 4px 0
+  +form-border-radius
   width: 20%
 
 #hashtag
-  border-radius: 0 4px 4px 0
+  +form-border-radius
   margin-right: 10px
   width: 58%
 
@@ -140,25 +148,22 @@ textarea
   width: 81%
 
 .input-prepend
-  background-color: $form-outline
+  +form-style
+  +form-border-radius(4px, 0, 0, 4px)
   color: #777
   margin-right: -6px
   padding: 9px 5px 1px 5px
-  border-radius: 4px 0 0 4px
-  border: 1px solid #ccc
-  box-shadow: inset 0 1px 3px $form-outline
 
 input[type="submit"]
+  +form-style($light-link)
   margin-top: 15px
   cursor: pointer
   border-radius: 8px
-  border: 1px solid $form-outline
   padding: 6px 10px
-  background-color: $light-link
 
 input[type="submit"]:hover
-  box-shadow: inset 0 1px 3px $form-outline
   background-color: $silver
+  box-shadow: inset 0 1px 3px $form-outline
   
 
 // Display Post
@@ -173,9 +178,7 @@ input[type="submit"]:hover
 
 // New Response Form
 
-#post_response_link
-  text-align: right
-
+#post_response_link,
 #new_response p a, #nonuser
   text-align: right
 
@@ -206,7 +209,7 @@ input[type="submit"]:hover
   position: relative
 
 .post_responses:hover
-  background-color: $dark-blue-hover
+  background-color: darken($dark-blue, 10%)
 
 .response_author a
   color: $light-link
@@ -216,10 +219,7 @@ input[type="submit"]:hover
 
 .edit_response
   display: inline
-
+  
   input
     width: 70px
     display: inline
-    
-  
-
