@@ -7,7 +7,8 @@ Brickbat::Application.routes.draw do
   resources :posts, except: [:edit, :update, :destroy] do
   	resources :responses, only: [:new, :create]
   end
-  post '/posts/vote', to: "posts#vote"
 
   get '/check', to: "posts#check"
+  resources :votes, only: [:create]
+
 end

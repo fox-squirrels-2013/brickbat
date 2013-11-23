@@ -267,3 +267,11 @@ input[type="submit"]:hover {
 	display: inline;
 }
 
+.clicked{
+	/*background-color: blue;*/
+}
+
+a img{
+	height: 40px;
+	width: 40px;
+}

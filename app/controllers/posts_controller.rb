@@ -33,45 +33,6 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     @sorted_responses = @post.responses.find(:all, :order => "votes_count DESC")
   end
-
-  def vote
-    
-    response = Response.find_by_id(params[:response_id].to_i)
-    
-    user = User.find_by_id(session[:user_id])
-    v = Vote.where(user_id: session[:user_id], response_id: response.id).first
-
-    Vote.create(user_id: user.id, response_id: response.id, vote: params[:commit]) unless v
-
-    if params[:commit] == "Up"
-      response.votes_count += 1
-      if v
-        response.votes_count += 1
-        v.vote = "Up"
-        v.save
-      end
-    end
-    
-    if params[:commit] == "Down"
-      response.votes_count -= 1
-      if v
-        response.votes_count -= 1
-        v.vote = "Down"
-        v.save
-      end
-    end
-
-    if params[:commit] == "Clear"
-      response.votes_count -= 1 if params[:previous_vote] == "Up"
-      response.votes_count += 1 if params[:previous_vote] == "Down"
-      v.destroy
-    end
-
-    response.save
-    id = response.post_id
-    redirect_to "/posts/#{id}"
-
-  end
   
   def check
     user = User.find_by_id(session[:user_id])
