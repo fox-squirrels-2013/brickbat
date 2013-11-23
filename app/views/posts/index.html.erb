@@ -16,7 +16,14 @@
 
             <ul>
               <li><span id='index_responses'><%= post.responses.count %> responses</span></li>
-              <li><span id='index_responses'>1 hour left</span></li>
+              <li><span id='index_responses'>Time left in hours: <%= post.time_left %></span></li>
+              <li><span id='index_responses'>Status: 
+                <% unless post.tweet_success %>
+                  Open
+                <% else %>
+                  Closed
+                <% end %>
+                </span></li>
             </ul>
 
           </p></li>
@@ -26,7 +33,7 @@
     </ul>
 
     <% else %>
-    <p>There are no posts to display.</p>
+      <p>There are no posts to display.</p>
     <% end %>
 
     <hr>

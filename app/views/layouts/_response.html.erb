@@ -1,31 +1,33 @@
-        <% v = Vote.where(user_id: session[:user_id], response_id: @response.id).first %>
+<%user = User.find_by_id(session[:user_id])%>
+<%vote = Vote.where(user_id: user.id, response_id: @response.id).first%>
+<%if vote && vote.vote == "Up"%>
+  <%up = "vote up_vote clicked"%>
+  <%uclick = "uclick"%>
+  <%up_img = "up_clicked.png"%>
+<%else%>
+  <%up = "vote up_vote"%>
+  <%uclick = ""%>
+  <%up_img = "up.png"%>
+<%end%>
 
-        <% if ((v && v.vote == "Down") && v.vote != "Up") || (Vote.where(user_id: session[:user_id], response_id: @response.id, vote: "Down").empty? && v == nil) %>
-          <%= form_for @response, url: posts_vote_path, method: :post do |f| %>
-            <%= hidden_field_tag :response_id, "#{@response.id}" %>
-            <%= f.submit "Up" %>
-          <% end %>
-        <% end %>
-        
-        <% if ((v && v.vote == "Up") && v.vote != "Down") || (Vote.where(user_id: session[:user_id], response_id: @response.id, vote: "Up").empty? && v == nil) %>
-          <%= form_for @response, url: posts_vote_path, method: :post do |f| %>
-            <%= hidden_field_tag :response_id, "#{@response.id}" %>
-            <%= f.submit "Down" %>
-          <% end %>
-        <% end %> 
+<%if vote && vote.vote == "Down"%>
+  <%down = "vote down_vote clicked"%>
+  <%dclick = "dclick"%>
+  <%down_img = "down_clicked.png"%> 
+<%else%>
+  <%down = "vote down_vote"%>
+  <%dclick = ""%>
+  <%down_img = "down.png"%>
+<%end%>
 
-        <% if v %>
-          <%= form_for response, url: posts_vote_path, method: :post do |f| %>
-              <%= hidden_field_tag :response_id, "#{@response.id}" %>
-              <%= hidden_field_tag :previous_vote, "#{v.vote}" %>
-              <%= f.submit "Clear" %>
-          <% end %>
-        <% end %>
 
-        <div class="post_responses">
-          <span class="response_votes"><%= @response.votes_count %></span> 
-          <span class="response_body"><%= @response.body %></span>
+<div class="post_responses">
 
-            <% author = username(@response.post) %>
-            <span class='response_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
-        </div>
+  <%= link_to image_tag("#{up_img}"), votes_path(response_id: @response.id, vote: 'Up'), method: :post, remote: true, class: "#{up}" %>
+  <%= link_to image_tag("#{down_img}"), votes_path(response_id: @response.id, vote: 'Down'), method: :post, remote: true, class: "#{down}" %>
+
+  <span class="response_votes"><%= @response.vote_total %></span> 
+  <span class="response_body"><%= @response.body %></span>
+  <% author = username(@response.post) %>
+  <span class='response_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
+</div>

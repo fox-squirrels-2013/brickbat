@@ -6,11 +6,13 @@ class Response < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
 
-  def up_vote
-    self.votes_count += 1
-  end
-
-  def down_vote
-    self.votes_count -= 1
+  def vote_total
+    votes_mapped = self.votes.map(&:vote)
+    value = 0
+    votes_mapped.each do |v|
+      value += 1 if v == 'Up'
+      value -= 1 if v == 'Down'
+    end
+    value
   end
 end

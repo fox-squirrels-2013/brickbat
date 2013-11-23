@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122000830) do
+ActiveRecord::Schema.define(:version => 20131122200758) do
 
   create_table "comments", :force => true do |t|
     t.integer "response_id"
@@ -22,8 +22,12 @@ ActiveRecord::Schema.define(:version => 20131122000830) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "time_to_post"
+    t.boolean  "tweet_success", :default => false
+    t.string   "mention"
+    t.string   "hashtag"
   end
 
   create_table "responses", :force => true do |t|
@@ -43,9 +47,11 @@ ActiveRecord::Schema.define(:version => 20131122000830) do
   end
 
   create_table "votes", :force => true do |t|
-    t.integer "user_id"
-    t.integer "response_id"
-    t.string  "vote"
+    t.integer  "user_id"
+    t.integer  "response_id"
+    t.string   "vote"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

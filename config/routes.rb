@@ -9,8 +9,13 @@ Brickbat::Application.routes.draw do
       resources :comments, only: [:new, :create, :index]
     end
   end
+
+  get '/check', to: "posts#check"
+  resources :votes, only: [:create]
+
   resources :comments, only: :show
 
   post '/posts/vote', to: "posts#vote"
+
 
 end
