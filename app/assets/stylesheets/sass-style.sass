@@ -1,0 +1,225 @@
+// Colors
+
+$header: #c0392b
+$light-link: #fff
+$blue-link: #2980b9
+$light-grey: #333
+$dark-blue: #34495e
+$dark-blue-hover: #2c3e50
+$silver: #ecf0f1
+$form-outline: #ccc
+
+// Main
+
+body
+  margin: 0px
+  padding: 0px
+  font-family: 'Source Sans Pro', sans-serif
+  font-weight: 200
+
+a
+  color: $blue-link
+  text-decoration: none
+
+a:hover
+  text-decoration: underline
+
+
+// Header and Navbar
+
+header
+  background-color: $header
+  height: 65px
+
+#navbar
+  padding-top: 35px
+  width: 95%
+  height: 30px
+  margin: auto
+
+  a
+    color: $light-link
+
+  ul
+    margin: 0px
+    padding: 0px
+
+  li
+    display: inline-block
+    list-style: none
+    padding-right: 15px
+
+  #login
+    float: right
+    color: $light-link
+
+    a
+      margin-left: 10px
+
+
+// Container
+
+.container
+  width: 800px
+  margin: auto
+
+@media (max-width: 900px)
+  .container
+    width: 70%
+  
+.container
+
+  ul ul
+    display: none
+  
+  h1
+    text-align: center
+    font-size: 80px
+  
+  ul
+    padding-left: 0px
+    list-style: none
+  
+    ul
+      position: absolute
+      right: 15px
+      top: 17px
+      float: right
+  
+    a:first-child:hover
+      text-decoration: none
+
+  li
+    position: relative
+
+  li:hover
+    background-color: $silver
+  
+  #posts p
+    margin: 0
+    padding: 15px 30px 0px 30px
+  
+  #index_title
+    font-size: 35px
+    color: $light-grey
+  
+  #index_title
+    color: $light-grey
+  
+  #index_responses
+    float: right
+    color: $light-grey
+
+
+// New Post Form
+
+#new_post
+  text-align: center
+
+#form-content
+  margin: auto
+
+form input, 
+textarea
+  margin-bottom: 10px
+
+#post_title
+  margin-right: 10px
+  width: 56%
+
+#mention
+  border-radius: 0 4px 4px 0
+  width: 20%
+
+#hashtag
+  border-radius: 0 4px 4px 0
+  margin-right: 10px
+  width: 58%
+
+#post_body
+  width: 81%
+
+.input-prepend
+  background-color: $form-outline
+  color: #777
+  margin-right: -6px
+  padding: 9px 5px 1px 5px
+  border-radius: 4px 0 0 4px
+  border: 1px solid #ccc
+  box-shadow: inset 0 1px 3px $form-outline
+
+input[type="submit"]
+  margin-top: 15px
+  cursor: pointer
+  border-radius: 8px
+  border: 1px solid $form-outline
+  padding: 6px 10px
+  background-color: $light-link
+
+input[type="submit"]:hover
+  box-shadow: inset 0 1px 3px $form-outline
+  background-color: $silver
+  
+
+// Display Post
+
+#show_post
+  text-align: center
+
+#show_post_body
+  text-align: left
+  padding: 0 30px
+  
+
+// New Response Form
+
+#post_response_link
+  text-align: right
+
+#new_response p a, #nonuser
+  text-align: right
+
+#new_response_form
+  text-align: center
+  background-color: $silver
+  padding: 15px 0 10px
+
+#new_response_form input[type="text"]
+  width: 500px
+
+@media (max-width: 800px)
+  #new_response_form input[type="text"]
+    width: 60%
+  
+.new_response
+  margin-top: 50px
+
+
+// Post Responses
+
+.post_responses
+  text-align: left
+  margin: 10px 0 
+  color: $light-link
+  padding: 20px
+  background-color: $dark-blue
+  position: relative
+
+.post_responses:hover
+  background-color: $dark-blue-hover
+
+.response_author a
+  color: $light-link
+
+
+// Response Buttons
+
+.edit_response
+  display: inline
+
+  input
+    width: 70px
+    display: inline
+    
+  
+
