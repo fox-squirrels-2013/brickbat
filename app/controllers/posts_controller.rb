@@ -5,15 +5,16 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def new 
+  def new
     if session[:user_id]
       @post = Post.new
     else
       render :non_user
-    end  
+    end
   end
 
   def create
+
     @post = Post.new
     @post.title = params[:post][:title]
     @post.body = params[:post][:body]
@@ -33,6 +34,7 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     @sorted_responses = @post.responses.find(:all, :order => "votes_count DESC")
   end
+
   
   def check
     user = User.find_by_id(session[:user_id])
@@ -44,7 +46,6 @@ class PostsController < ApplicationController
         post.save
       end
     end
-    redirect_to '/'
   end
 
 end

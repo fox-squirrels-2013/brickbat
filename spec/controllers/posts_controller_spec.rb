@@ -5,7 +5,7 @@ describe PostsController do
   let!(:post_obj) { Post.create title: 'test title', body: 'test body'}
 
   it '#index' do
-    get :index    
+    get :index
     expect(assigns(:posts)).to eq [post_obj]
   end
 
@@ -18,7 +18,7 @@ describe PostsController do
   context '#create' do
 
     let!(:post_params) { { title: 'test title', body: 'test body' } }
-    
+
     it 'creates a post with valid params' do
       expect{
       post :create, post: post_params
@@ -28,7 +28,7 @@ describe PostsController do
 
     it 'does not create a post with invalid params' do
       expect{
-      post :create, post: { title: 'test title' } 
+      post :create, post: { title: 'test title' }
       }.to change(Post, :count).by 0
     end
   end

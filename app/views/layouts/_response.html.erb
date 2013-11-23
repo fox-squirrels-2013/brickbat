@@ -1,6 +1,6 @@
 <%user = User.find_by_id(session[:user_id])%>
 <%vote = Vote.where(user_id: user.id, response_id: @response.id).first%>
-<%if vote.vote == "Up"%>
+<%if vote && vote.vote == "Up"%>
   <%up = "vote up_vote clicked"%>
   <%uclick = "uclick"%>
   <%up_img = "up_clicked.png"%>
@@ -10,7 +10,7 @@
   <%up_img = "up.png"%>
 <%end%>
 
-<%if vote.vote == "Down"%>
+<%if vote && vote.vote == "Down"%>
   <%down = "vote down_vote clicked"%>
   <%dclick = "dclick"%>
   <%down_img = "down_clicked.png"%> 

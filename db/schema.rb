@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20131122200758) do
 
+  create_table "comments", :force => true do |t|
+    t.integer "response_id"
+    t.string  "content"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"

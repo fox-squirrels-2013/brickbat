@@ -4,16 +4,16 @@
     <hr>
 
     <% unless @posts.empty? %>
-    
+
     <ul>
       <% @posts.each do |post| %>
 
-        <%= link_to post_path(post.id) do %> 
+        <%= link_to post_path(post.id) do %>
           <li><p>
             <span id='index_title'><%= post.title %></span>
             <% author = username(post) %>
             <span id='index_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
-            
+
             <ul>
               <li><span id='index_responses'><%= post.responses.count %> responses</span></li>
               <li><span id='index_responses'>Time left in hours: <%= post.time_left %></span></li>
@@ -25,7 +25,7 @@
                 <% end %>
                 </span></li>
             </ul>
-          
+
           </p></li>
         <% end %>
 
