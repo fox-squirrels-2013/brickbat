@@ -28,7 +28,6 @@ group :test do
 	gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
-  gem 'devise'
 end
 gem 'omniauth-twitter'
 gem 'jquery-rails'
