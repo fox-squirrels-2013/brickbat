@@ -28,7 +28,8 @@ group :test do
 	gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
-  gem 'devise'
+  gem 'faker'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 gem 'omniauth-twitter'
 gem 'jquery-rails'
