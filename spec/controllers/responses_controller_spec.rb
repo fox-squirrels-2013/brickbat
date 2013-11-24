@@ -2,30 +2,19 @@ require 'spec_helper'
 
 describe ResponsesController do
 
-  let!(:response_obj) { Response.create body: 'test body'}
-  let!(:post_obj) { Post.create title: 'test title', body: 'test body'}
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:post) { FactoryGirl.create(:post) }
+  let!(:response) { FactoryGirl.create(:response) }
+  let!(:response_params) { FactoryGirl.attributes_for(:response) }
 
-  it '#new' do
-    get :new, :post_id => post_obj.id
-    expect(assigns(:response)).to be_an_instance_of Response
+  before do
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:twitter]
+    session[:user_id] = user.id
   end
 
-  context '#create' do
-
-    let!(:response_params) { { body: 'test body', post_id: post_obj.id } }
-
-    it 'creates a post with valid params' do
-      expect{
-      post :create, post_id: post_obj.id, response: response_params
-      expect(assigns(:response).body).to eq 'test body'
-      }.to change(Response, :count).by 1
-    end
-
-    it 'does not create a post with invalid params' do
-      expect{
-      post :create, :post_id => post_obj.id, response: { }
-      }.to change(Response, :count).by 0
-    end
+  it '#new' do
+    get :new, :post_id => post.id
+    expect(assigns(:response)).to be_an_instance_of Response
   end
 
 end

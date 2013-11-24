@@ -18,12 +18,12 @@ describe Response do
   describe 'can vote count' do
 
     it 'up_vote increases votes by 1' do
-      expect{ response.up_vote
+      expect{ response.votes_count += 1
         }.to change(response, :votes_count).by 1
     end
 
     it 'down_vote decreases votes by 1' do
-        expect{ response.down_vote
+        expect{ response.votes_count -= 1
           }.to change(response, :votes_count).by -1
     end
   end
