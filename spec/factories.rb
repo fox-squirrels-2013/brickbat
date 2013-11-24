@@ -11,4 +11,10 @@ FactoryGirl.define do
     title Faker::Lorem.word
     body Faker::Lorem.sentence
   end
+
+  factory :response do
+    user
+    post
+    body Faker::Lorem.sentence
+  end
 end
