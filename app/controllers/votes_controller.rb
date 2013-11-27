@@ -1,13 +1,13 @@
 class VotesController < ApplicationController
-
+  # this is doing way too much.
   def create
-    vote = Vote.where(user_id:     session[:user_id], 
-                      response_id: params[:response_id]).first
+    response = Response.find params[:response_id]
+    vote = response.votes_for(current_user).first
+
     if vote.nil?
       p 'creating vote'
-      vote = Vote.new user_id:     session[:user_id],
-                      response_id: params[:response_id],
-                      vote:        params[:vote]
+      vote = response.votes.build :vote => params[:vote]
+      vote.user = current_user
     else
       p 'vote overwrite'
       vote.vote = params[:vote]

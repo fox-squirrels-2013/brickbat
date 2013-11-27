@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_user, :only => [:new]
   include TwitterHelper
 
   def index
@@ -6,22 +7,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    if session[:user_id]
-      @post = Post.new
-    else
-      render :non_user
-    end
+    @post = Post.new
   end
 
   def create
-
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
-    @post.user_id = session[:user_id]
-    @post.time_to_post = Time.now.hour + params[:countdown][0].to_i
-    @post.mention = params[:mention] unless params[:mention].empty?
-    @post.hashtag = params[:hashtag] unless params[:hashtag].empty?
+    @post = current_user.posts.build params[:post]
     if @post.save
       redirect_to post_path(@post)
     else
@@ -35,17 +25,15 @@ class PostsController < ApplicationController
     @sorted_responses = @post.responses.find(:all, :order => "votes_count DESC")
   end
 
-  
+
   def check
-    user = User.find_by_id(session[:user_id])
-    client = TwitterHelper.new(user)
-    Post.all.each do |post|
-      if post.time_left <= 0 && post.tweet_success == false
-        client.update(post.highest_rated_response) 
-        post.tweet_success = true
-        post.save
-      end
-    end
+    client = TwitterHelper.new(current_user)
+    Post.check_time_left!(client)
+  end
+
+  private
+  def authenticate_user
+    render :non_user unless current_user
   end
 
 end

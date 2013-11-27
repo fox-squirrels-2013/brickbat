@@ -1,11 +1,13 @@
 module ApplicationHelper
-
-  def username(post)
-    post.user.username
+  def upvote
+    vote_button("downvote", 1)
   end
 
-  def twit_link(username)
-    'https://twitter.com/' + username
+  def downvote
+    vote_button("upvote", -1)
   end
-  
+
+  def vote_button(name, value)
+    link_to name, posts_path(:value => value), :remote => true
+  end
 end

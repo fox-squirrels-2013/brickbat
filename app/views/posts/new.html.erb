@@ -1,8 +1,8 @@
 
 <div id="new_post">
-  
+
 	<h1>Create a New Post</h1>
-  
+
   <%if session[:errors] %>
   <% session[:errors].each do |e,m| %>
   <p><%= "#{e} #{m}"%>/p>
@@ -10,14 +10,14 @@
     <% session[:errors] = nil %>
     <%end%>
 
-    <%= form_for :post, url: posts_path, html: { class: "pure-form pure-form-aligned" } do |f| %>
+    <%= form_for @post, html: { class: "pure-form pure-form-aligned" } do |f| %>
     <div id='form-content'>
 
       <div id='input-headers'>
         <%= f.text_field :title, placeholder: 'title' %>
 
         <span class='input-prepend'>@</span>
-        <%= text_field_tag :mention, nil, placeholder: "recipient"  %>      
+        <%= f.text_field :mention, nil, placeholder: "recipient"  %>
 
       </div>
 
@@ -27,13 +27,13 @@
 
       <div id="hastag-input">
         <span class='input-prepend'>#</span>
-        <%= text_field_tag :hashtag, nil, placeholder: "optional hashtags" %>  
-        <%= label_tag :countdown, 'Countdown' %>    
-        <%= select_tag :countdown, options_for_select(['1 hour', '2 hours', '3 hours']) %>
+        <%= f.text_field :hashtag, nil, placeholder: "optional hashtags" %>
+        <%= label_tag :time_to_post, 'Countdown' %>
+        <%= select_tag :time_to_post, options_for_select(['1 hour', '2 hours', '3 hours']) %>
       </div>
     </div>
-    
+
     <div><%= f.submit "Create" %></div>
-    
+
     <% end %>
   </div>

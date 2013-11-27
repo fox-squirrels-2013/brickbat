@@ -1,5 +1,5 @@
-<%user = User.find_by_id(session[:user_id])%>
-<%vote = Vote.where(user_id: user.id, response_id: @response.id).first%>
+// this is messy. move all that logic out of the view.
+<%vote = Vote.where(user_id: current_user.id, response_id: @response.id).first%>
 <%if vote && vote.vote == "Up"%>
   <%up = "vote up_vote clicked"%>
   <%uclick = "uclick"%>
@@ -10,10 +10,10 @@
   <%up_img = "up.png"%>
 <%end%>
 
-<%if vote && vote.vote == "Down"%>
+<%if vote && vote.down?%>
   <%down = "vote down_vote clicked"%>
   <%dclick = "dclick"%>
-  <%down_img = "down_clicked.png"%> 
+  <%down_img = "down_clicked.png"%>
 <%else%>
   <%down = "vote down_vote"%>
   <%dclick = ""%>
@@ -26,7 +26,7 @@
   <%= link_to image_tag("#{up_img}"), votes_path(response_id: @response.id, vote: 'Up'), method: :post, remote: true, class: "#{up}" %>
   <%= link_to image_tag("#{down_img}"), votes_path(response_id: @response.id, vote: 'Down'), method: :post, remote: true, class: "#{down}" %>
 
-  <span class="response_votes"><%= @response.vote_total %></span> 
+  <span class="response_votes"><%= @response.vote_total %></span>
   <span class="response_body"><%= @response.body %></span>
   <% author = username(@response.post) %>
   <span class='response_author'><%= link_to '@' + author, twit_link(author), target: '_blank' %></span>
